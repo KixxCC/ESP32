@@ -1,4 +1,56 @@
+@media screen and (max-width: 481px)  {
+  body {
+    font-family: Doctor-Who;
+    color: #fff;
+    background: #171F30;
+  }
+
+  .wrapper svg {
+  }
+
+  .wrap {
+    min-height: 100vh;
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .half {
+      width: 50%;
+      padding: 32px 0;
+    }
+  }
+  .paragraph {
+    font-family: Doctor-Who;
+
+  }
+  .title {
+    font-family: sans-serif;
+    line-height: 24px;
+    display: block;
+    padding: 8px 0;
+  }
+
+  .readout {
+    margin-top: 32px;
+    font-family: monospace;
+  }
+
+  .link {
+    margin-top: 16px;
+
+    a {
+      color: MediumSlateBlue;
+    }
+  }
+}
+
+
+
 body {
+  font-family: Doctor-Who;
   color: #fff;
   background: #171F30;
 }
@@ -20,7 +72,10 @@ body {
     padding: 32px 0;
   }
 }
+.paragraph {
+  font-family: Doctor-Who;
 
+}
 .title {
   font-family: sans-serif;
   line-height: 24px;
