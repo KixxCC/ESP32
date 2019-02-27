@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+}
+
+.wrap {
+    position: relative;
+    bottom: -120px;
+    padding-top: 150px;
+}
+
+input {
+    border: 0px;
+    padding : 6px;
+}
+
+.popup-kelly-color-custom {
+    position : absolute;
+    display : none;
+    background-color : rgb(225, 225, 225);
+    border : 1px solid rgb(191, 191, 191);
+    box-shadow : rgba(0, 0, 0, 0.24) 7px 7px 14px -3px;
+    border-radius : 4px;
+    padding : 12px;
+    box-sizing : content-box;
+    left : 0px;
+    bottom : 0px;
+    border-radius: 110px;
+    margin-left: -30px;
+    margin-top: -10px;
+}

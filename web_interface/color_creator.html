@@ -9,37 +9,15 @@
     <script src="./js/html5kellycolorpicker.min.js"></script>
     </script>
     <style>
-    body {
-        text-align: center;
+    body{
+      padding-top: 12px;
+      text-align : center;
+     }
+    input{
+      padding : 6px;
+      border: 0px;
     }
-
-    .wrap {
-        position: relative;
-        bottom: -120px;
-        padding-top: 150px;
-    }
-
-    input {
-        border: 0px;
-        padding : 6px;
-    }
-
-    .popup-kelly-color-custom {
-        position : absolute;
-        display : none;
-        background-color : rgb(225, 225, 225);
-        border : 1px solid rgb(191, 191, 191);
-        box-shadow : rgba(0, 0, 0, 0.24) 7px 7px 14px -3px;
-        border-radius : 4px;
-        padding : 12px;
-        box-sizing : content-box;
-        left : 0px;
-        bottom : 0px;
-        border-radius: 110px;
-        margin-left: -37px;
-        margin-top: -10px;
-    }
-</style>
+  </style>
   </head>
   <body>
     <ul>
@@ -47,13 +25,12 @@
       <li><a class="active" href="color_creator.html">Colors</a></li>
       <li><a href="sets.html">Sets</a></li>
     </ul>
-    <div class="wrap">
-        <p><b>Choose color or enter Colorcode</b></p>
-        <input class="colorpicker-custom" value="#e45f5d">
-        </div>
-    <script type="text/javascript">
-      var colorpickersCustom = KellyColorPicker.attachToInputByClass('colorpicker-custom', {alpha_slider : false, size : 200, popupClass : 'popup-kelly-color-custom'});
-    </script>
-    
+    <p style="margin-bottom : 50px;"></p>
+    <canvas id="picker"></canvas><br>
+        <input id="color" value="#54aedb">
+        <script>
+            new KellyColorPicker({place : 'picker', input : 'color', size : 230});
+        </script>
+
 </body>
 </html>
