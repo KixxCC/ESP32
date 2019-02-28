@@ -13,10 +13,7 @@
       padding-top: 12px;
       text-align : center;
      }
-    input{
-      padding : 6px;
-      border: 0px;
-    }
+
   </style>
   </head>
   <body>
@@ -25,12 +22,21 @@
       <li><a class="active" href="color_creator.html">Colors</a></li>
       <li><a href="sets.html">Sets</a></li>
     </ul>
-    <p style="margin-bottom : 50px;"></p>
-    <canvas id="picker"></canvas><br>
+    <p style="margin-bottom : 80px;"></p>
+    <canvas id="picker"></canvas><br> <br> <br>
         <input id="color" value="#54aedb">
         <script>
-            new KellyColorPicker({place : 'picker', input : 'color', size : 230});
+            new KellyColorPicker({place : 'picker', input : 'color', size : 250});
         </script>
-
-</body>
+        <button id="try_button" type="button" class="button" name="button">Try</button>
+        <div style="margin-top: 20px">
+          <input id="save_name"type="text" name="color_name" placeholder="Color name"><br>
+          <button id="save_button" style="margin-top : 20px" type="button" class="button" name="button" >Save</button>
+        </div>
+        <br><br>
+        <div class="select-wrapper">
+          <select class="" name="">
+            <option value="fuck">you</option>
+          </select>
+        </div>
 </html>
