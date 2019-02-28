@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/master.css">
     <link rel="stylesheet" href="./css/color_picker.css">
     <script src="./js/html5kellycolorpicker.min.js"></script>
+    <script src="./js/underscore-min.js"></script>
     </script>
     <style>
     body{
@@ -26,18 +27,21 @@
     <p style="margin-bottom : 80px;"></p>
     <canvas id="picker"></canvas><br> <br> <br>
         <input id="color" value="#54aedb">
-        <script>
-            new KellyColorPicker({place : 'picker', input : 'color', size : 250});
-        </script>
         <button id="try_button" type="button" class="button" name="button">Try</button>
         <div style="margin-top: 20px">
           <input id="save_name"type="text" name="color_name" placeholder="Color name"><br>
           <button id="save_button" style="margin-top : 20px" type="button" class="button" name="button" >Save</button>
         </div>
         <br><br>
-        <div class="select-wrapper">
-          <select class="" name="">
-            <option value="fuck">you</option>
-          </select>
-        </div>
+    <script type="text/javascript">
+    function try_color(color_hex) {
+      var colorJSON = '{ "color":'+color_hex+'}';
+      var request = new XMLHttpRequest();
+      request.open('POST','http://'+ window.location.hostname+'/led-try',true);
+      request.setRequestHeader('Conten-type','application/json');
+      request.send(colorJSON);
+    }
+    new KellyColorPicker({place : 'picker', input : 'color', size : 250});
+    document.getElementById('try_button').onclick = try_color(KellyColorPicker.getCurColorHex());
+    </script>
 </html>
