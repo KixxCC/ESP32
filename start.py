@@ -21,9 +21,10 @@ def show_color(hexcolor):
 
 
 def _httpHandlerLEDPost(httpClient, httpResponse):
+    print("got somenthing")
     content = httpClient.ReadRequestContent()  # Read JSON color data
     colors = json.loads(content)
-    print(colors)
+    show_color(colors['color'])
     httpResponse.WriteResponseJSONOk()
 
 routeHandlers = [ ( "/led-try", "POST",  _httpHandlerLEDPost ) ]
