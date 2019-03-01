@@ -6,6 +6,6 @@
 
 Electronic Parts:
   * ESP32
-  * Neopixel RGBW 
+  * Neopixel 
   * 5V DC Female Power Jack
   
