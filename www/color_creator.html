@@ -40,6 +40,13 @@
       request.setRequestHeader('Conten-type','application/json');
       request.send(colorJSON);
     }
+
+    function send_color(name,color_hex) {
+      var color_JSON = '{ "name" :'+'"'+ name+'",'+ '"color":'+'"'+color_hex+'"}'
+      request.open('POST','http://'+ window.location.hostname+'/color-set',true);
+      request.setRequestHeader('Conten-type','application/json');
+      request.send(colorJSON);
+    }
     new KellyColorPicker({place : 'picker', input : 'color', size : 250});
     </script>
 </html>

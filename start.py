@@ -20,14 +20,18 @@ def show_color(hexcolor):
     blue.duty(color_rgb[2])
 
 
-def _httpHandlerLEDPost(httpClient, httpResponse):
+def _httpHandlerAddColorPost(httpClient, httpResponse):
+    content = httpClient.ReadRequestContent()
+    color = json.loads(content)
+
+def _httpHandlerLEDTryPost(httpClient, httpResponse):
     print("got somenthing")
     content = httpClient.ReadRequestContent()  # Read JSON color data
     colors = json.loads(content)
     show_color(colors['color'])
     httpResponse.WriteResponseJSONOk()
 
-routeHandlers = [ ( "/led-try", "POST",  _httpHandlerLEDPost ) ]
+routeHandlers = [ ( "/color-try", "POST",  _httpHandlerLEDTryPost ) ]
 srv = MicroWebSrv(routeHandlers=routeHandlers, webPath='/www/')
 srv.Start(threaded=False)
 show_color('#ffffff')
