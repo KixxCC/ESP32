@@ -1,9 +1,18 @@
 {
   "defaults":{
-
+    "White":"ffffff",
     "Red":"#ff0000",
-    "Green":"#00ff00",
+    "Maroon":"#800000",
+    "Yellow":"#FFFF00",
+    "Olive":"#808000",
+    "Lime":"#00ff00",
+    "Green":"#008000",
+    "Aqua":"#00FFFF",
+    "Teal":"#008080",
     "Blue": "#0000ff",
+    "Navy":"#000080",
+    "Pink":"#FF00FF",
+    "Purple":"#800080"
 
 },
   "user_set":{}

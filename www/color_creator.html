@@ -43,6 +43,7 @@
 
     function send_color(name,color_hex) {
       var color_JSON = '{ "name" :'+'"'+ name+'",'+ '"color":'+'"'+color_hex+'"}'
+      var request = new XMLHttpRequest();
       request.open('POST','http://'+ window.location.hostname+'/color-set',true);
       request.setRequestHeader('Conten-type','application/json');
       request.send(colorJSON);
