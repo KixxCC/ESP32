@@ -1,8 +1,8 @@
 import network
 
 def connect():
-    password = "9261274132264035"
-    ssid = "WLAN-QNAKN3"
+    password = "42971622156631733279"
+    ssid = "Unserwlan"
     station = network.WLAN(network.STA_IF)
     if station.isconnected() == True:
         print("Already connected")
@@ -13,7 +13,7 @@ def connect():
         pass
     print("Connection successful")
     print(station.ifconfig())
-    station.config(dhcp_hostname='tardis-controll')
+    station.config(dhcp_hostname='halloclara')
     print(station.config('dhcp_hostname'))
 
 connect()

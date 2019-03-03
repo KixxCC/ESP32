@@ -29,25 +29,25 @@
         <button id="try_button" type="button" class="button" name="button" onclick="try_color(document.getElementById('color').value)">Try</button>
         <div style="margin-top: 20px">
           <input id="save_name"type="text" name="color_name" placeholder="Color name"><br>
-          <button id="save_button" style="margin-top : 20px" type="button" class="button" name="button" >Save</button>
+          <button id="save_button" style="margin-top : 20px" type="button" class="button" name="button" onclick="send_color(document.getElementById('save_name').value,document.getElementById('color').value)" >Save</button>
         </div>
         <br><br>
     <script type="text/javascript">
     function try_color(color_hex) {
       var colorJSON = '{ "color":'+'"'+color_hex+'"'+'}';
       var request = new XMLHttpRequest();
-      request.open('POST','http://'+ window.location.hostname+'/led-try',true);
+      request.open('POST','http://'+ window.location.hostname+'/color-try',true);
       request.setRequestHeader('Conten-type','application/json');
       request.send(colorJSON);
     }
 
     function send_color(name,color_hex) {
-      var color_JSON = '{ "name" :'+'"'+ name+'",'+ '"color":'+'"'+color_hex+'"}'
-      var request = new XMLHttpRequest();
-      request.open('POST','http://'+ window.location.hostname+'/color-set',true);
-      request.setRequestHeader('Conten-type','application/json');
-      request.send(colorJSON);
+      var colorJSON = '{ "name" :'+'"'+ name+'",'+ '"color":'+'"'+color_hex+'"}'
+      var request_send = new XMLHttpRequest();
+      request_send.open('POST','http://'+ window.location.hostname+'/color-append',true);
+      request_send.setRequestHeader('Conten-type','application/json');
+      request_send.send(colorJSON);
     }
-    new KellyColorPicker({place : 'picker', input : 'color', size : 250});
+    new KellyColorPicker({place : 'picker', input : 'color', size : 260});
     </script>
 </html>

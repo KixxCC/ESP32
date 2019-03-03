@@ -24,19 +24,21 @@ def show_color(hexcolor):
 
 
 def _httpHandlerAddColorPost(httpClient, httpResponse):
-    with open('/www/colors.json') as colors_json:
+    with open('./www/colors.json') as colors_json:
         colors_raw = json.load(colors_json)
-    all_colors_json = dict(**colors_raw['defaults'], **colors_raw['user_set'])
+    all_colors_json = colors_raw['defaults'].copy()
+    all_colors_json.update(colors_raw['user_set'])
     content = httpClient.ReadRequestContent()
+    print(content,'si')
     content_json = json.loads(content)
     name,color = content_json['name'],content_json['color']
     if name in all_colors_json.keys():
         color_name_exists = all_colors_json[name]
-         	httpResponse.WriteResponseJSONError(409, obj={"error":"Name already taken", "content":color_name_exists})
+        httpResponse.WriteResponseJSONError(409, obj={"error":"Name already taken", "content":color_name_exists})
             #send name already exists error with color
-    if color in all_colors_json.values():
+    elif color in all_colors_json.values():
         color_name = all_colors_json.keys()[all_colors_json.values().index(color)]
-         	httpResponse.WriteResponseJSONError(409, obj={"error":"Color already exists", "content": color_name})
+        httpResponse.WriteResponseJSONError(409, obj={"error":"Color already exists", "content": color_name})
         #send color already exists error with name
     else:
         colors_raw['user_set'].update({name:color})
@@ -44,14 +46,15 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
             colors_json.write(json.dumps(colors_raw,indent=4))
         httpResponse.WriteResponseJSONOk()
 
-def _httpHandlerLEDTryPost(httpClient, httpResponse):
-    print("got somenthing")
+def _httpHandlerColorTryPost(httpClient, httpResponse):
     content = httpClient.ReadRequestContent()  # Read JSON color data
     colors = json.loads(content)
-    show_color(colors['color'])
+
+    print(colors['color'])
+
     httpResponse.WriteResponseJSONOk()
 
-routeHandlers = [ ( "/color-try", "POST",  _httpHandlerLEDTryPost ) ]
+routeHandlers = [ ( "/color-try", "POST",  _httpHandlerColorTryPost ),("/color-append", "POST", _httpHandlerAddColorPost) ]
 srv = MicroWebSrv(routeHandlers=routeHandlers, webPath='/www/')
 srv.Start(threaded=False)
 show_color('#ffffff')
