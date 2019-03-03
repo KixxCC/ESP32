@@ -31,16 +31,18 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
     content_json = json.loads(content)
     name,color = content_json['name'],content_json['color']
     if name in all_colors_json.keys():
-        pass
-        #send name already exists error
+        color_name_exists = all_colors_json[name]
+         	httpResponse.WriteResponseJSONError(409, obj={"error":"Name already taken", "content":color_name_exists})
+            #send name already exists error with color
     if color in all_colors_json.values():
-        pass
-        #send color already exists with name error
+        color_name = all_colors_json.keys()[all_colors_json.values().index(color)]
+         	httpResponse.WriteResponseJSONError(409, obj={"error":"Color already exists", "content": color_name})
+        #send color already exists error with name
     else:
         colors_raw['user_set'].update({name:color})
         with open('/www/colors.json','w') as colors_json:
             colors_json.write(json.dumps(colors_raw,indent=4))
-        #send succesfull submit response
+        httpResponse.WriteResponseJSONOk()
 
 def _httpHandlerLEDTryPost(httpClient, httpResponse):
     print("got somenthing")
