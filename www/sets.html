@@ -8,12 +8,24 @@
     <style media="screen">
       select{
         width: 140px;
-        height: 40px
+        height: 40px;
+        padding-left:9px;
       }
-      input:checkbox{
-        height: 20px;
-        width: 50px;
-        margin-bottom: 20px;
+      input[type='checkbox'] {
+          -webkit-appearance:none;
+          width:30px;
+          height:30px;
+          background:white;
+          border-radius:5px;
+          border:2px solid #555;
+      }
+      input[type='checkbox']:checked {
+          background: ##1e1e1e;
+      }
+      label.checkbox-label input[type=checkbox]{
+          position: relative;
+          vertical-align: middle;
+          bottom: 1px;
       }
     </style>
   </head>
@@ -24,25 +36,29 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-
-    <input type="checkbox" name="si" value="doot"> All Colors Same <br><br>
-    <select class=" " name=""></select>
-
-
+    <label class="checkbox-label"><input type="checkbox" name="si" value="doot"> Rootin </label> <br><br>
+    <select  class=" " name="">
+      <option style="background-color:gray" value="gray">Suck Suck</option>
+    </select>
 
     <h4>Top</h4>
     <select class="" id="top" name=""></select>
+
     <h4>Front</h4>
     <select class="" id="font_left" name=""></select>
     <select class="" id="front_rigth" name=""></select>
     <h4>Left</h4>
+
     <select class="" id="left_left" name=""></select>
     <select class="" id="left_right" name=""></select>
     <h4>Back</h4>
+
     <select class="" id="back_left" name=""></select>
     <select class="" id="back_rigth" name=""></select>
     <h4>Right</h4>
+
     <select class="" id="rigth_left" name=""></select>
     <select class="" id="rigth_rigth" name=""></select>
+
   </body>
 </html>
