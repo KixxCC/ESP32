@@ -41,9 +41,11 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
         httpResponse.WriteResponseJSONError(409, obj={"error":"Color already exists", "content": color_name})
         #send color already exists error with name
     else:
+        print('here')
         colors_raw['user_set'].update({name:color})
         with open('/www/colors.json','w') as colors_json:
             colors_json.write(json.dumps(colors_raw,indent=4))
+        print('here')
         httpResponse.WriteResponseJSONOk()
 
 def _httpHandlerColorTryPost(httpClient, httpResponse):
