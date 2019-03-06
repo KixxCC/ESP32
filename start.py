@@ -1,12 +1,8 @@
 
 
 from microWebSrv import MicroWebSrv
-
 import json
 import machine
-
-
-
 
 
 def show_color(hexcolor):
