@@ -1,8 +1,12 @@
 
 
 from microWebSrv import MicroWebSrv
+
 import json
 import machine
+
+
+
 
 
 def show_color(hexcolor):
@@ -20,7 +24,7 @@ def show_color(hexcolor):
 
 
 def _httpHandlerAddColorPost(httpClient, httpResponse):
-    with open('./www/colors.json') as colors_json:
+    with open('/www/colors.json') as colors_json:
         colors_raw = json.load(colors_json)
     all_colors_json = colors_raw['defaults'].copy()
     all_colors_json.update(colors_raw['user_set'])
