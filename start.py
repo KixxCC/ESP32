@@ -57,6 +57,7 @@ def _httpHandlerColorTryPost(httpClient, httpResponse):
 
     httpResponse.WriteResponseJSONOk()
 
+
 routeHandlers = [ ( "/color-try", "POST",  _httpHandlerColorTryPost ),("/color-append", "POST", _httpHandlerAddColorPost) ]
 srv = MicroWebSrv(routeHandlers=routeHandlers, webPath='/www/')
 srv.Start(threaded=False)

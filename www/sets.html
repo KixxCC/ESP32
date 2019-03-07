@@ -19,7 +19,7 @@
           border:2px solid #555;
       }
       input[type='checkbox']:checked {
-          background: ##1e1e1e;
+          background: #1e1e1e;
       }
       label.checkbox-label input[type=checkbox]{
           position: relative;
@@ -35,16 +35,14 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-    <label class="checkbox-label"><input type="checkbox" name="si" value="doot"> Rootin </label> <br><br>
-    <select  class=" " name="">
-      <option style="background-color:gray" value="gray">Suck Suck</option>
-    </select>
+    <label class="checkbox-label"><input type="checkbox" name="si" value="doot"> All Colors Same </label> <br><br>
+    <select  class="" id="all_same" name=""></select>
 
     <h4>Top</h4>
     <select class="" id="top" name=""></select>
 
     <h4>Front</h4>
-    <select class="" id="font_left" name=""></select>
+    <select class="" id="front_left" name=""></select>
     <select class="" id="front_rigth" name=""></select>
     <h4>Left</h4>
 
@@ -58,6 +56,22 @@
 
     <select class="" id="rigth_left" name=""></select>
     <select class="" id="rigth_rigth" name=""></select>
+    <br><br><br><br>
+    <input type="text" id="set_name" placeholder="Set Name">
+    <br><br>
+    <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button>
+
+
+
+    <script type="text/javascript">
+      let dropdowns = [document.getElementById('all_same'),document.getElementById('top'),
+                       document.getElementById('front_left'),document.getElementById('front_rigth'),
+                       document.getElementById('left_left'),document.getElementById('left_right'),
+                       document.getElementById('back_left'),document.getElementById('back_rigth'),
+                       document.getElementById('rigth_left'),document.getElementById('rigth_rigth')]
+    </script>
+
+
 
   </body>
 </html>
