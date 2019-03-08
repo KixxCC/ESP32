@@ -12,6 +12,8 @@
       }
       input[type='checkbox'] {
           -webkit-appearance:none;
+          position: relative;
+          z-index: -3;
           width:30px;
           height:30px;
           background:white;
@@ -35,25 +37,31 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-    <label class="checkbox-label"><input type="checkbox" name="si" value="doot"> All Colors Same </label> <br><br>
-    <select  class="" id="all_same" name=""></select>
+    <label class="checkbox-label"><input type="checkbox" name="si" value="doot"
+    onclick="enable_disable_selects(['all_same','top','front_left',
+    'front_banner','front_rigth','left_left','left_banner','left_right',
+    'back_left','back_banner','back_rigth',
+    'rigth_left','rigth_banner','rigth_rigth'])">
+     All Colors Same </label> <br><br>
+    <select disabled  class="" id="all_same" name=""></select>
 
     <h4>Top</h4>
     <select class="" id="top" name=""></select>
 
     <h4>Front</h4>
+    <select class="" id="front_banner" name=""></select><br><br>
     <select class="" id="front_left" name=""></select>
     <select class="" id="front_rigth" name=""></select>
     <h4>Left</h4>
-
+    <select class="" id="left_banner" name=""></select><br><br>
     <select class="" id="left_left" name=""></select>
     <select class="" id="left_right" name=""></select>
     <h4>Back</h4>
-
+    <select class="" id="back_banner" name=""></select><br><br>
     <select class="" id="back_left" name=""></select>
     <select class="" id="back_rigth" name=""></select>
     <h4>Right</h4>
-
+    <select class="" id="rigth_banner" name=""></select><br><br>
     <select class="" id="rigth_left" name=""></select>
     <select class="" id="rigth_rigth" name=""></select>
     <br><br><br><br>
@@ -64,6 +72,23 @@
 
 
     <script type="text/javascript">
+      function enable_disable_selects(selects) {
+        if (document.getElementById(selects[0]).disabled == true) {
+          document.getElementById(selects[0]).disabled = false;
+        }
+        else {
+          document.getElementById(selects[0]).disabled = true;
+        }
+
+        for (var i = 1; i < selects.length; i++) {
+          if (document.getElementById(selects[i]).disabled == true) {
+            document.getElementById(selects[i]).disabled = false;
+          }
+          else {
+            document.getElementById(selects[i]).disabled = true;
+          }
+        }
+      }
       let dropdowns = [document.getElementById('all_same'),document.getElementById('top'),
                        document.getElementById('front_left'),document.getElementById('front_rigth'),
                        document.getElementById('left_left'),document.getElementById('left_right'),
