@@ -72,12 +72,12 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-    <label class="checkbox-label"><input id="all_same"type="checkbox" name="" value=""
-    onclick="enable_disable_selects(['color_all_same','top','front_left',
+    <label class="checkbox-label"><input type="checkbox" id="check_all_same" name="si" value="doot"
+    onclick="enable_disable_selects(['all_same','top','front_left',
     'front_rigth','left_left','left_right',
     'back_left','back_rigth','rigth_left','rigth_rigth'])">
      All Colors Same </label> <br><br>
-     <select disabled  class="" id="color_all_same" name=""></select>
+     <select disabled  class="" id="all_same" name=""></select>
     <h4>Banner</h4>
       <select class="" id="banner" name=""></select>
     <h4>Top</h4>
@@ -106,7 +106,7 @@
     <br><br>
     <input type="text" id="set_name" placeholder="Set Name">
     <br><br><br>
-    <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
+    <button class="button" type="button" name="button" onclick="try_set()">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
 
     <script type="text/javascript">
     var slider = document.getElementById("brightness");
@@ -114,9 +114,8 @@
     output.innerHTML = '50%'; // Display the default slider value
 
     // Update the current slider value (each time you drag the slider handle)
-    // use slidr.value / 100 for json
+    // use slider.value / 100 for json
     slider.oninput = function() {
-      console.log(this.value);
       output.innerHTML = this.value+ '%' ;
     }
     </script>
@@ -175,13 +174,26 @@
     <script type="text/javascript">
       function try_set(){
         if (!document.getElementById('check_all_same').checked ) {
-          console.log('yeet');
+          JSON ='{   "top":' +document.getElementById('top').value +
+                 ',"banner":'+document.getElementById('banner').value +
+                  '"front":['+document.getElementById('front_left').value+','+
+                              document.getElementById('front_rigth').value+'],'+
+                   '"left":['+document.getElementById('left_left').value+','+
+                              document.getElementById('left_right').value'],'+
+                   '"back":['+document.getElementById('back_left').value+','+
+                              document.getElementById('back_rigth').value+'],'+
+                  '"rigth":['+document.getElementById('rigth_left').value+','+
+                              document.getElementById('rigth_rigth').value+'],'+
+                  
+
+
         }
         else {
           console.log('neet');
         }
       }
     </script>
+
 
   </body>
 </html>
