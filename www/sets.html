@@ -93,12 +93,14 @@
       function fill_select(select,colorsJSON) {
       html = '';
       html+= '<optgroup label="Defaults">'
+      html+= "<option selected value='none'>None</option>"
         for (var key in colorsJSON['defaults'] ) {
           if (object.hasOwnProperty(key)) {
             html += "<option value=" + colorJSON['defaults'][key]  + ">" +key + "</option>"
           }
         }
       html+='</optgroup>'
+
       html+='<optgroup label="Created Colors">'
       for (var key in colorsJSON['user_set'] ) {
         if (object.hasOwnProperty(key)) {
@@ -106,6 +108,9 @@
         }
       }
       html+='</optgroup>'
+
+      document.getElementById(select).innerHTML = html;
+
       }
 
     </script>
