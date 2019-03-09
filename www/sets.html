@@ -72,12 +72,12 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-    <label class="checkbox-label"><input type="checkbox" id="check_all_same" value="doot"
-    onclick="enable_disable_selects(['all_same','top','front_left',
+    <label class="checkbox-label"><input id="all_same"type="checkbox" name="" value=""
+    onclick="enable_disable_selects(['color_all_same','top','front_left',
     'front_rigth','left_left','left_right',
     'back_left','back_rigth','rigth_left','rigth_rigth'])">
      All Colors Same </label> <br><br>
-     <select disabled  class="" id="all_same" name=""></select>
+     <select disabled  class="" id="color_all_same" name=""></select>
     <h4>Banner</h4>
       <select class="" id="banner" name=""></select>
     <h4>Top</h4>
@@ -106,7 +106,7 @@
     <br><br>
     <input type="text" id="set_name" placeholder="Set Name">
     <br><br><br>
-    <button class="button" type="button" name="button" onclick="try_set()">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
+    <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
 
     <script type="text/javascript">
     var slider = document.getElementById("brightness");
@@ -175,7 +175,7 @@
     <script type="text/javascript">
       function try_set(){
         if (!document.getElementById('check_all_same').checked ) {
-          JSON = '{'+'}'
+          console.log('yeet');
         }
         else {
           console.log('neet');
