@@ -28,6 +28,38 @@
           vertical-align: middle;
           bottom: 1px;
       }
+      .slidecontainer{
+        width: 100%;
+      }
+      .slider {
+        -webkit-appearance: none;
+        width: 80%;
+        height: 15px;
+        border-radius: 5px;
+        background: #333;
+        outline: none;
+        opacity: 1;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #1e1e1e;
+        cursor: pointer;
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #1e1e1e;
+        cursor: pointer;
+      }
     </style>
   </head>
 
@@ -65,12 +97,29 @@
     <br>
     <h4>Led Effects</h4>
       <select class="" id="led_effect" name=""></select>
-    <br><br><br>
-    <input type="text" id="set_name" placeholder="Set Name">
     <br><br>
-    <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button>
+    <div class="slidecontainer">
+        <h3>brightness</h3>
+        <output id="brightness_display"></output><br><br>
+        <input type="range" class="slider" value="50" id="brightness" min="0" max="100" step="1">
+    </div>
+    <br><br>
+    <input type="text" id="set_name" placeholder="Set Name">
+    <br><br><br>
+    <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
 
+    <script type="text/javascript">
+    var slider = document.getElementById("brightness");
+    var output = document.getElementById("brightness_display");
+    output.innerHTML = '50%'; // Display the default slider value
 
+    // Update the current slider value (each time you drag the slider handle)
+    // use slidr.value / 100 for json
+    slider.oninput = function() {
+      console.log(this.value);
+      output.innerHTML = this.value+ '%' ;
+    }
+    </script>
 
     <script type="text/javascript">
       function enable_disable_selects(selects) {
@@ -104,7 +153,6 @@
           html += "<option value=" + colorJSON['user_set'][key]+ " style= 'color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
       }
       html+='</optgroup>';
-      console.log(html);
       document.getElementById(select).innerHTML = html;
 
       }

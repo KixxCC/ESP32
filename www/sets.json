@@ -1,0 +1,21 @@
+{
+  "defaults":[
+    {
+    "name":"",
+    "banner":"",
+    "top":"",
+    "front":["left_col","rigth_col"],
+    "left":["left_col","rigth_col"],
+    "back":["left_col","rigth_col"],
+    "rigth":["left_col","rigth_col"],
+    "effect":"",
+    "brightness":1
+
+
+
+    }
+
+
+
+  ]
+}
