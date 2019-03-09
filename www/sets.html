@@ -94,14 +94,14 @@
       function fill_select(select,colorJSON) {
       html = '';
       html+= '<optgroup label="Defaults">';
-      html+= "<option selected value='none'>None</option>";
+      html+= "<option selected value='#000000'>None</option>";
         for (var key in colorJSON['defaults'] ) {
             html += "<option value=" + colorJSON['defaults'][key]  + " style= 'background-color:"+colorJSON['defaults'][key]+"'>" +key + "</option>";
         }
       html+='</optgroup>';
       html+='<optgroup label="Created Colors">';
       for (var key in colorJSON['user_set'] ) {
-          html += "<option value=" + colorJSON['user_set'][key]+ " style= 'background-color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
+          html += "<option value=" + colorJSON['user_set'][key]+ " style= 'color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
       }
       html+='</optgroup>';
       console.log(html);
@@ -109,7 +109,8 @@
 
       }
       function Set_selects(json_path,selects) {
-        //http://'+ window.location.hostname+'/www/+json
+        //http://'+ window.location.hostname+'/'+json_path for server
+        //json_path for dev
         fetch (json_path)
           .then(function(response){
             return response.json();

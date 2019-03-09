@@ -1,8 +1,8 @@
 import network
 
 def connect():
-    password = ""
-    ssid = "MyWiFi"
+    password = "9261274132264035"
+    ssid = "WLAN-QNAKN3"
     station = network.WLAN(network.STA_IF)
     if station.isconnected() == True:
         print("Already connected")
