@@ -30,7 +30,10 @@
       }
     </style>
   </head>
-  <body>
+
+  <body onload="Set_selects('colors.json',['all_same','banner','top',
+  'front_left','front_rigth','left_left','left_right','back_left','back_rigth',
+  'rigth_left','rigth_rigth'])">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="color_creator.html">Colors</a></li>
@@ -87,32 +90,37 @@
           }
         }
       }
-      function get_JSON() {
-        return 0;
-      }
-      function fill_select(select,colorsJSON) {
+
+      function fill_select(select,colorJSON) {
       html = '';
-      html+= '<optgroup label="Defaults">'
-      html+= "<option selected value='none'>None</option>"
-        for (var key in colorsJSON['defaults'] ) {
-          if (object.hasOwnProperty(key)) {
-            html += "<option value=" + colorJSON['defaults'][key]  + ">" +key + "</option>"
-          }
+      html+= '<optgroup label="Defaults">';
+      html+= "<option selected value='none'>None</option>";
+        for (var key in colorJSON['defaults'] ) {
+            html += "<option value=" + colorJSON['defaults'][key]  + " style= 'background-color:"+colorJSON['defaults'][key]+"'>" +key + "</option>";
         }
-      html+='</optgroup>'
-
-      html+='<optgroup label="Created Colors">'
-      for (var key in colorsJSON['user_set'] ) {
-        if (object.hasOwnProperty(key)) {
-          html += "<option value=" + colorJSON['user_set'][key]  + ">" +key + "</option>"
-        }
+      html+='</optgroup>';
+      html+='<optgroup label="Created Colors">';
+      for (var key in colorJSON['user_set'] ) {
+          html += "<option value=" + colorJSON['user_set'][key]+ " style= 'background-color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
       }
-      html+='</optgroup>'
-
+      html+='</optgroup>';
+      console.log(html);
       document.getElementById(select).innerHTML = html;
 
       }
+      function Set_selects(json_path,selects) {
+        //http://'+ window.location.hostname+'/www/+json
+        fetch (json_path)
+          .then(function(response){
+            return response.json();
+          })
+          .then(function(myJson) {
+            for (var i = 0; i < selects.length; i++) {
+              fill_select(selects[i],myJson)
+            }
+          });
 
+      }
     </script>
 
 
