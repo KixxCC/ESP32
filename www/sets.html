@@ -39,32 +39,35 @@
     <br><br><br>
     <label class="checkbox-label"><input type="checkbox" name="si" value="doot"
     onclick="enable_disable_selects(['all_same','top','front_left',
-    'front_banner','front_rigth','left_left','left_banner','left_right',
-    'back_left','back_banner','back_rigth',
-    'rigth_left','rigth_banner','rigth_rigth'])">
+    'front_rigth','left_left','left_right',
+    'back_left','back_rigth','rigth_left','rigth_rigth'])">
      All Colors Same </label> <br><br>
     <select disabled  class="" id="all_same" name=""></select>
-
+    <h4>Banner</h4>
+    <select class="" id="banner" name=""></select>
     <h4>Top</h4>
     <select class="" id="top" name=""></select>
-
     <h4>Front</h4>
-    <select class="" id="front_banner" name=""></select><br><br>
     <select class="" id="front_left" name=""></select>
     <select class="" id="front_rigth" name=""></select>
     <h4>Left</h4>
-    <select class="" id="left_banner" name=""></select><br><br>
     <select class="" id="left_left" name=""></select>
     <select class="" id="left_right" name=""></select>
     <h4>Back</h4>
-    <select class="" id="back_banner" name=""></select><br><br>
     <select class="" id="back_left" name=""></select>
     <select class="" id="back_rigth" name=""></select>
     <h4>Right</h4>
-    <select class="" id="rigth_banner" name=""></select><br><br>
     <select class="" id="rigth_left" name=""></select>
     <select class="" id="rigth_rigth" name=""></select>
-    <br><br><br><br>
+    <br><br>
+    <h4>Led Mode</h4>
+      <input type="radio" id="radio_none" name="led_mode"  value="0">
+      <label for="radio_none">none</label><br>
+      <input type="radio" id="radio_hover"name="led_mode" value="1">
+      <label for="radio_hover">hover</label><br>
+      <input type="radio" id="radio_disco"name="led_mode" value="2">
+      <label for="radio_disco">Disco</label><br>
+      <br><br>
     <input type="text" id="set_name" placeholder="Set Name">
     <br><br>
     <button class="button" type="button" name="button">Try</button> <button class="button" type="button" name="button">Save</button>
