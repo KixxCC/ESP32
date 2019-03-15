@@ -4,14 +4,12 @@
     "name":"",
     "banner":"",
     "top":"",
-    "front":["left_col","rigth_col"],
-    "left":["left_col","rigth_col"],
-    "back":["left_col","rigth_col"],
-    "rigth":["left_col","rigth_col"],
-    "effect":"",
-    "brightness":1
-
-
+    "front":["color_a","color_b"],
+    "left":["color_a","color_b"],
+    "back":["color_a","color_b"],
+    "rigth":["color_a","color_b"],
+    "mode":"",
+    "effect":""
 
     }
 

@@ -63,7 +63,7 @@
     </style>
   </head>
 
-  <body onload="Set_selects('colors.json',['all_same','banner','top',
+  <body onload="Set_selects('colors.json',['banner','top',
   'front_a','front_b','left_a','left_b','back_a','back_b',
   'rigth_a','rigth_b'])">
     <ul>
@@ -72,12 +72,6 @@
       <li><a class="active" href="sets.html">Sets</a></li>
     </ul>
     <br><br><br>
-    <label class="checkbox-label"><input type="checkbox" id="check_all_same" name="si" value="doot"
-    onclick="enable_disable_selects(['all_same','top','front_a',
-    'front_b','left_a','left_b',
-    'back_a','back_b','rigth_a','rigth_b'])">
-     All Colors Same </label> <br><br>
-     <select disabled  class="" id="all_same" name=""></select>
     <h4>Banner</h4>
       <select class="" id="banner" name=""></select>
     <h4>Top</h4>
@@ -95,50 +89,25 @@
       <select class="" id="rigth_a" name=""></select>
       <select class="" id="rigth_b" name=""></select>
     <br>
-    <h4>Led Effects</h4>
-      <select class="" id="led_effect" name=""></select>
-    <br><br>
-    <div class="slidecontainer">
-        <h3>brightness</h3>
-        <output id="brightness_display"></output><br><br>
-        <input type="range" class="slider" value="50" id="brightness" min="0" max="100" step="1">
-    </div>
-    <br><br>
+    <h4>Show Modes</h4>
+      <select class="" id="show_mode"  name="">
+        <option value="">Hover</option>
+        <option value="">Raibow</option>
+        <option value="">Rainbow Walk</option>
+        <option value="">Alternating</option>
+      </select>
+    <br>
+    <h4>Led effects</h4>
+    <select class="" id="led_effect" name=""></select>
+    <br><br><br>
+
     <input type="text" id="set_name" placeholder="Set Name">
     <br><br><br>
-    <button class="button" type="button" name="button" onclick="try_set()">Try</button> <button class="button" type="button" name="button">Save</button> <br><br><br>
+
+    <button class="button" type="button" name="button" onclick="try_set()">Try</button>
+    <button class="button" type="button" name="button">Save</button> <br><br><br>
 
     <script type="text/javascript">
-    var slider = document.getElementById("brightness");
-    var output = document.getElementById("brightness_display");
-    output.innerHTML = '50%'; // Display the default slider value
-
-    // Update the current slider value (each time you drag the slider handle)
-    // use slider.value / 100 for json
-    slider.oninput = function() {
-      output.innerHTML = this.value+ '%' ;
-    }
-    </script>
-
-    <script type="text/javascript">
-      function enable_disable_selects(selects) {
-        if (document.getElementById(selects[0]).disabled == true) {
-          document.getElementById(selects[0]).disabled = false;
-        }
-        else {
-          document.getElementById(selects[0]).disabled = true;
-        }
-
-        for (var i = 1; i < selects.length; i++) {
-          if (document.getElementById(selects[i]).disabled == true) {
-            document.getElementById(selects[i]).disabled = false;
-          }
-          else {
-            document.getElementById(selects[i]).disabled = true;
-          }
-        }
-      }
-
       function fill_select(select,colorJSON) {
       html = '';
       html+= '<optgroup label="Defaults">';
@@ -167,22 +136,23 @@
               fill_select(selects[i],myJson)
             }
           });
+        }
 
-      }
+
     </script>
 
     <script type="text/javascript">
       function try_set(){
         if (!document.getElementById('check_all_same').checked ) {
-          JSON ='{   "top":' +document.getElementById('top').value +
-                 ',"banner":'+document.getElementById('banner').value +
-                  '"front":['+document.getElementById('front_a').value+','+
+          JSON ='{   "top":' +document.getElementById('top').value+','     +
+                  '"banner":'+document.getElementById('banner').value+','  +
+                  '"front":['+document.getElementById('front_a').value+',' +
                               document.getElementById('front_b').value+'],'+
-                   '"left":['+document.getElementById('left_a').value+','+
-                              document.getElementById('left_b').value'],'+
-                   '"back":['+document.getElementById('back_a').value+','+
-                              document.getElementById('back_b').value+'],'+
-                  '"rigth":['+document.getElementById('rigth_a').value+','+
+                   '"left":['+document.getElementById('left_a').value+','  +
+                              document.getElementById('left_b').value'],'  +
+                   '"back":['+document.getElementById('back_a').value+','  +
+                              document.getElementById('back_b').value+'],' +
+                  '"rigth":['+document.getElementById('rigth_a').value+',' +
                               document.getElementById('rigth_b').value+'],'+
 
 

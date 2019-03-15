@@ -5,6 +5,41 @@
     <link rel="stylesheet" href="./css/master.css">
     <meta charset="utf-8">
     <title>Who Knows</title>
+    <style media="screen">
+    .slidecontainer{
+      width: 100%;
+    }
+    .slider {
+      -webkit-appearance: none;
+      width: 80%;
+      height: 9px;
+      border-radius: 5px;
+      background: #333;
+      outline: none;
+      opacity: 1;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: #1e1e1e;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: #1e1e1e;
+      cursor: pointer;
+    }
+
+    </style>
   </head>
   <body>
     <ul>
@@ -12,6 +47,23 @@
       <li><a href="color_creator.html">Colors</a></li>
       <li><a href="sets.html">Sets</a></li>
     </ul>
+    
+    <div class="slidecontainer">
+        <h3>brightness</h3>
+        <output id="brightness_display"></output><br><br>
+        <input type="range" class="slider" value="50" id="brightness" min="0" max="100" step="1">
+    </div>
 
+    <script type="text/javascript">
+    var slider = document.getElementById("brightness");
+    var output = document.getElementById("brightness_display");
+    output.innerHTML = '50%'; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    // use slider.value / 100 for json
+    slider.oninput = function() {
+      output.innerHTML = this.value+ '%' ;
+    }
+    </script>
   </body>
 </html>
