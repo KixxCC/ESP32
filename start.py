@@ -24,9 +24,7 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
         colors_raw = json.load(colors_json)
     all_colors_json = colors_raw['defaults'].copy()
     all_colors_json.update(colors_raw['user_set'])
-    print('si')
     content = httpClient.ReadRequestContent()
-    print(content,'si')
     content_json = json.loads(content)
     name,color = content_json['name'],content_json['color']
     if name in all_colors_json.keys():
@@ -40,6 +38,7 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
     else:
         print('here')
         colors_raw['user_set'].update({name:color})
+        print(colors_raw['user_set'])
         with open('/www/colors.json','w') as colors_json:
             colors_json.write(json.dumps(colors_raw,indent=4))
         print('here')
