@@ -28,42 +28,10 @@
           vertical-align: middle;
           bottom: 1px;
       }
-      .slidecontainer{
-        width: 100%;
-      }
-      .slider {
-        -webkit-appearance: none;
-        width: 80%;
-        height: 9px;
-        border-radius: 5px;
-        background: #333;
-        outline: none;
-        opacity: 1;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-      }
-
-      .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 29px;
-        height: 29px;
-        border-radius: 50%;
-        background: #1e1e1e;
-        cursor: pointer;
-      }
-
-      .slider::-moz-range-thumb {
-        width: 29px;
-        height: 29px;
-        border-radius: 50%;
-        background: #1e1e1e;
-        cursor: pointer;
-      }
     </style>
   </head>
 
-  <body onload="Set_selects('colors.json',['banner','top',
+  <body onload="Set_selects('/colors-json',,['banner','top',
   'front_a','front_b','left_a','left_b','back_a','back_b',
   'rigth_a','rigth_b'])">
     <ul>
@@ -124,19 +92,19 @@
       document.getElementById(select).innerHTML = html;
 
       }
-      function Set_selects(json_path,selects) {
-        //http://'+ window.location.hostname+'/'+json_path for server
-        //json_path for dev
-        fetch (json_path)
-          .then(function(response){
-            return response.json();
-          })
-          .then(function(myJson) {
-            for (var i = 0; i < selects.length; i++) {
-              fill_select(selects[i],myJson)
-            }
-          });
-        }
+
+      function Set_selects(route,selects) {
+        var req = new XMLHttpRequest();
+        req.open("GET",'http://'+ window.location.hostname+route,true);
+        req.send();
+        req.onload=function(){
+          json=JSON.parse(req.responseText);
+          console.log(JSON.stringify(json));
+          //for (var i = 0; i < selects.length; i++) {
+          //  fill_select(selects[i],myJson)
+          //}
+          };
+      }
 
 
     </script>
@@ -149,11 +117,11 @@
                   '"front":['+document.getElementById('front_a').value+',' +
                               document.getElementById('front_b').value+'],'+
                    '"left":['+document.getElementById('left_a').value+','  +
-                              document.getElementById('left_b').value'],'  +
+                              document.getElementById('left_b').value+'],'  +
                    '"back":['+document.getElementById('back_a').value+','  +
                               document.getElementById('back_b').value+'],' +
                   '"rigth":['+document.getElementById('rigth_a').value+',' +
-                              document.getElementById('rigth_b').value+'],'+
+                              document.getElementById('rigth_b').value+'],'
 
 
 

@@ -18,15 +18,19 @@ def show_color(hexcolor):
     green.duty(color_rgb[1])
     blue.duty(color_rgb[2])
 
+def _httpHandlerJsoncolorRequest(httpClient, httpResponse):
+    httpResponse.WriteResponseFile('/JSON-files/colors.json', contentType='application/json', headers=None)
+
 
 def _httpHandlerAddColorPost(httpClient, httpResponse):
-    with open('/www/colors.json') as colors_json:
+    with open('/JSON-files/colors.json') as colors_json:
         colors_raw = json.load(colors_json)
     all_colors_json = colors_raw['defaults'].copy()
     all_colors_json.update(colors_raw['user_set'])
     content = httpClient.ReadRequestContent()
     content_json = json.loads(content)
     name,color = content_json['name'],content_json['color']
+    print('here')
     if name in all_colors_json.keys():
         color_name_exists = all_colors_json[name]
         httpResponse.WriteResponseJSONError(409, obj={"error":"Name already taken", "content":color_name_exists})
@@ -36,11 +40,8 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
         httpResponse.WriteResponseJSONError(409, obj={"error":"Color already exists", "content": color_name})
         #send color already exists error with name
     else:
-        print('here')
         colors_raw['user_set'].update({name:color})
-        print(colors_raw['user_set'])
-        with open('/www/colors.json','w') as colors_json:
-            colors_json.write(json.dumps(colors_raw,indent=4))
+        print(json.dumps(colors_raw))
         print('here')
         httpResponse.WriteResponseJSONOk()
 
@@ -52,7 +53,8 @@ def _httpHandlerColorTryPost(httpClient, httpResponse):
 
     httpResponse.WriteResponseJSONOk()
 
-routeHandlers = [ ( "/color-try", "POST",  _httpHandlerColorTryPost ),("/color-append", "POST", _httpHandlerAddColorPost) ]
+
+routeHandlers = [ ( "/color-try", "POST",  _httpHandlerColorTryPost ),("/color-append", "POST", _httpHandlerAddColorPost),("/colors-json", "GET", _httpHandlerJsoncolorRequest) ]
 srv = MicroWebSrv(routeHandlers=routeHandlers, webPath='/www/')
 srv.Start(threaded=False)
 show_color('#ffffff')
