@@ -31,7 +31,7 @@
     </style>
   </head>
 
-  <body onload="Set_selects('/colors-json',,['banner','top',
+  <body onload="Set_selects('/colors-json',['banner','top',
   'front_a','front_b','left_a','left_b','back_a','back_b',
   'rigth_a','rigth_b'])">
     <ul>
@@ -99,10 +99,9 @@
         req.send();
         req.onload=function(){
           json=JSON.parse(req.responseText);
-          console.log(JSON.stringify(json));
-          //for (var i = 0; i < selects.length; i++) {
-          //  fill_select(selects[i],myJson)
-          //}
+          for (var i = 0; i < selects.length; i++) {
+            fill_select(selects[i],json)
+          }
           };
       }
 
