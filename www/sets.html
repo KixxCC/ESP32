@@ -64,8 +64,8 @@
   </head>
 
   <body onload="Set_selects('colors.json',['all_same','banner','top',
-  'front_left','front_rigth','left_left','left_right','back_left','back_rigth',
-  'rigth_left','rigth_rigth'])">
+  'front_a','front_b','left_a','left_b','back_a','back_b',
+  'rigth_a','rigth_b'])">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="color_creator.html">Colors</a></li>
@@ -73,9 +73,9 @@
     </ul>
     <br><br><br>
     <label class="checkbox-label"><input type="checkbox" id="check_all_same" name="si" value="doot"
-    onclick="enable_disable_selects(['all_same','top','front_left',
-    'front_rigth','left_left','left_right',
-    'back_left','back_rigth','rigth_left','rigth_rigth'])">
+    onclick="enable_disable_selects(['all_same','top','front_a',
+    'front_b','left_a','left_b',
+    'back_a','back_b','rigth_a','rigth_b'])">
      All Colors Same </label> <br><br>
      <select disabled  class="" id="all_same" name=""></select>
     <h4>Banner</h4>
@@ -83,17 +83,17 @@
     <h4>Top</h4>
       <select class="" id="top" name=""></select>
     <h4>Front</h4>
-      <select class="" id="front_left" name=""></select>
-      <select class="" id="front_rigth" name=""></select>
+      <select class="" id="front_a" name=""></select>
+      <select class="" id="front_b" name=""></select>
     <h4>Left</h4>
-      <select class="" id="left_left" name=""></select>
-      <select class="" id="left_right" name=""></select>
+      <select class="" id="left_a" name=""></select>
+      <select class="" id="left_b" name=""></select>
     <h4>Back</h4>
-      <select class="" id="back_left" name=""></select>
-      <select class="" id="back_rigth" name=""></select>
+      <select class="" id="back_a" name=""></select>
+      <select class="" id="back_b" name=""></select>
     <h4>Right</h4>
-      <select class="" id="rigth_left" name=""></select>
-      <select class="" id="rigth_rigth" name=""></select>
+      <select class="" id="rigth_a" name=""></select>
+      <select class="" id="rigth_b" name=""></select>
     <br>
     <h4>Led Effects</h4>
       <select class="" id="led_effect" name=""></select>
@@ -144,12 +144,12 @@
       html+= '<optgroup label="Defaults">';
       html+= "<option selected value='#000000'>None</option>";
         for (var key in colorJSON['defaults'] ) {
-            html += "<option value=" + colorJSON['defaults'][key]  + " style= 'background-color:"+colorJSON['defaults'][key]+"'>" +key + "</option>";
+            html += "<option value=" + colorJSON['defaults'][key]  + " style= 'color:"+colorJSON['defaults'][key]+"'>" +key + "</option>";
         }
       html+='</optgroup>';
       html+='<optgroup label="Created Colors">';
       for (var key in colorJSON['user_set'] ) {
-          html += "<option value=" + colorJSON['user_set'][key]+ " style= 'color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
+          html += "<option value=" + colorJSON['user_set'][key]+ " style= 'background-color:"+colorJSON['user_set'][key]+"'>" +key + "</option>";
       }
       html+='</optgroup>';
       document.getElementById(select).innerHTML = html;
@@ -176,14 +176,14 @@
         if (!document.getElementById('check_all_same').checked ) {
           JSON ='{   "top":' +document.getElementById('top').value +
                  ',"banner":'+document.getElementById('banner').value +
-                  '"front":['+document.getElementById('front_left').value+','+
-                              document.getElementById('front_rigth').value+'],'+
-                   '"left":['+document.getElementById('left_left').value+','+
-                              document.getElementById('left_right').value'],'+
-                   '"back":['+document.getElementById('back_left').value+','+
-                              document.getElementById('back_rigth').value+'],'+
-                  '"rigth":['+document.getElementById('rigth_left').value+','+
-                              document.getElementById('rigth_rigth').value+'],'+
+                  '"front":['+document.getElementById('front_a').value+','+
+                              document.getElementById('front_b').value+'],'+
+                   '"left":['+document.getElementById('left_a').value+','+
+                              document.getElementById('left_b').value'],'+
+                   '"back":['+document.getElementById('back_a').value+','+
+                              document.getElementById('back_b').value+'],'+
+                  '"rigth":['+document.getElementById('rigth_a').value+','+
+                              document.getElementById('rigth_b').value+'],'+
 
 
 
