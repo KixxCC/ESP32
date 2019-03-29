@@ -8,13 +8,64 @@
     <link rel="stylesheet" href="./css/master.css">
     <link rel="stylesheet" href="./css/color_picker.css">
     <script src="./js/html5kellycolorpicker.min.js"></script>
-    </script>
+    <script src="./js/underscore-min.js"></script>
     <style>
     body{
       padding-top: 12px;
       text-align : center;
      }
+     .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #1e1e1e;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #1e1e1e;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
   </style>
   </head>
   <body>
@@ -24,15 +75,21 @@
       <li><a href="sets.html">Sets</a></li>
     </ul>
     <p style="margin-bottom : 60px;"></p>
-    <canvas id="picker"></canvas><br> <br> <br>
+    <canvas id="picker"></canvas><br> <br>
         <input id="color" value="#54aedb">
-        <button id="try_button" type="button" class="button" name="button" onclick="try_color(document.getElementById('color').value)">Try</button>
         <div style="margin-top: 20px">
-          <input id="save_name"type="text" name="color_name" placeholder="Color Name" ><br>
+          <input id="save_name"type="text" name="color_name" placeholder="Color Name">
+          <h3>Try Color</h3>
+          <label class="switch">
+              <input id="trymode" type="checkbox">
+              <span class="slider round"></span>
+          </label><br>
           <button id="save_button" style="margin-top : 20px" type="button" class="button" name="button" onclick="send_color(document.getElementById('save_name').value,document.getElementById('color').value)" >Save</button>
         </div>
-        <br><br>
+
     <script type="text/javascript">
+    var throttleTryColor = _.throttle(try_color,400)
+
     function try_color(color_hex) {
       var colorJSON = '{ "color":'+'"'+color_hex+'"'+'}';
       var request = new XMLHttpRequest();
@@ -48,6 +105,15 @@
       request_send.setRequestHeader('Conten-type','application/json');
       request_send.send(colorJSON);
     }
-    new KellyColorPicker({place : 'picker', input : 'color', size : 260});
+    new KellyColorPicker({
+      place : 'picker',
+      input : 'color',
+      size : 260,
+      userEvents : { change : function(self) {
+        if(document.getElementById('trymode').checked){
+            try_color(self.getCurColorHex());
+        }
+      }}
+    });
     </script>
 </html>
