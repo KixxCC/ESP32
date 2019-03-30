@@ -3,7 +3,12 @@
 from microWebSrv import MicroWebSrv
 import json
 import machine
-
+red = machine.PWM(machine.Pin(4))
+green = machine.PWM(machine.Pin(2))
+blue = machine.PWM(machine.Pin(18))
+red.freq(122)
+green.freq(122)
+blue.freq(122)
 
 def show_color(hexcolor):
     red = machine.PWM(machine.Pin(4))
