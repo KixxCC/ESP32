@@ -88,8 +88,6 @@ input:checked + .slider:before {
         </div>
 
     <script type="text/javascript">
-    var throttleTryColor = _.throttle(try_color,400)
-
     function try_color(color_hex) {
       var colorJSON = '{ "color":'+'"'+color_hex+'"'+'}';
       var request = new XMLHttpRequest();
@@ -105,15 +103,19 @@ input:checked + .slider:before {
       request_send.setRequestHeader('Conten-type','application/json');
       request_send.send(colorJSON);
     }
-    new KellyColorPicker({
+    var color_picker = new KellyColorPicker({
       place : 'picker',
       input : 'color',
-      size : 260,
-      userEvents : { change : function(self) {
-        if(document.getElementById('trymode').checked){
-            try_color(self.getCurColorHex());
-        }
-      }}
-    });
+      size : 260
+    })
+
+    var onchange = function(self) {
+      if(document.getElementById('trymode').checked){
+          try_color(self.getCurColorHex());
+      }
+    }
+    var throttleOnchange = _.throttle(onchange,2000);
+    var throttletrycolor = _.throttle(try_color,400);
+    color_picker.addUserEvent("change", onchange);
     </script>
 </html>
