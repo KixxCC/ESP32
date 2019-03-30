@@ -89,12 +89,22 @@ input:checked + .slider:before {
 
     <script type="text/javascript">
     function try_color(color_hex) {
-      var colorJSON = '{ "color":'+'"'+color_hex+'"'+'}';
+      color_rgb = hexToRgb(color_hex)
+      var colorJSON = '{ "color":'+'"'+color_rgb.r+','+color_rgb.g+','+color_rgb.b+'"'+'}';
       var request = new XMLHttpRequest();
-      request.open('POST','http://'+ window.location.hostname+'/color-try',true);
+      request.open('POST','http://'+window.location.hostname+'/color-try',true);
       request.setRequestHeader('Conten-type','application/json');
       request.send(colorJSON);
     }
+
+    function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
 
     function send_color(name,color_hex) {
       var colorJSON = '{ "name" :'+'"'+ name+'",'+ '"color":'+'"'+color_hex+'"}'
@@ -115,7 +125,7 @@ input:checked + .slider:before {
       }
     }
     var throttleOnchange = _.throttle(onchange,2000);
-    var throttletrycolor = _.throttle(try_color,400)
+    var throttletrycolor = _.throttle(try_color,2000)
     color_picker.addUserEvent("change", onchange);
     </script>
 </html>

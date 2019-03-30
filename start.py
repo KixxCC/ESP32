@@ -3,29 +3,24 @@
 from microWebSrv import MicroWebSrv
 import json
 import machine
-red = machine.PWM(machine.Pin(4))
-green = machine.PWM(machine.Pin(2))
-blue = machine.PWM(machine.Pin(18))
+red = machine.PWM(machine.Pin(18))
+green = machine.PWM(machine.Pin(4))
+blue = machine.PWM(machine.Pin(2))
 red.freq(122)
 green.freq(122)
 blue.freq(122)
 
-def show_color(hexcolor):
-    red = machine.PWM(machine.Pin(4))
-    green = machine.PWM(machine.Pin(2))
-    blue = machine.PWM(machine.Pin(18))
-    red.freq(122)
-    green.freq(122)
-    blue.freq(122)
-    h= hexcolor.lstrip('#')
-    color_rgb = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
-    red.duty(color_rgb[0])
-    green.duty(color_rgb[1])
-    blue.duty(color_rgb[2])
+def show_color(color):
+    global red
+    global blue
+    global green
+    color_rgb = color.split(',')
+    red.duty(int(color_rgb[0]))
+    green.duty(int(color_rgb[1]))
+    blue.duty(int(color_rgb[2]))
 
 def _httpHandlerJsoncolorRequest(httpClient, httpResponse):
     httpResponse.WriteResponseFile('/JSON-files/colors.json', contentType='application/json', headers=None)
-
 
 def _httpHandlerAddColorPost(httpClient, httpResponse):
     with open('/JSON-files/colors.json') as colors_json:
@@ -51,16 +46,14 @@ def _httpHandlerAddColorPost(httpClient, httpResponse):
         httpResponse.WriteResponseJSONOk()
         with open('/JSON-files/colors.json') as colors_json:
             print(json.load(colors_json))
+
 def _httpHandlerColorTryPost(httpClient, httpResponse):
     content = httpClient.ReadRequestContent()  # Read JSON color data
     colors = json.loads(content)
-
-    print(colors['color'])
-
+    show_color(colors['color'])
     httpResponse.WriteResponseJSONOk()
 
 
 routeHandlers = [ ( "/color-try", "POST",  _httpHandlerColorTryPost ),("/color-append", "POST", _httpHandlerAddColorPost),("/colors-json", "GET", _httpHandlerJsoncolorRequest) ]
 srv = MicroWebSrv(routeHandlers=routeHandlers, webPath='/www/')
 srv.Start(threaded=False)
-show_color('#ffffff')
